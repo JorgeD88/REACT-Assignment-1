@@ -1,16 +1,14 @@
 // Greeting.js
+// Greeting.js
 import React from "react";
 
-function Greeting() {
+function Greeting({ username }) {
   const today = new Date().toLocaleDateString();
 
   return (
     <div>
-      <h1>Hello, Welcome to React!</h1>
-
-      <p style={{ color: "blue", fontSize: "18px" }}>
-        Today’s date is: {today}
-      </p>
+      <h1>Hello, {username}!</h1>
+      <p style={{ color: "purple" }}>Today's date is: {today}</p>
     </div>
   );
 }

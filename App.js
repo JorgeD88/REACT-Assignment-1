@@ -25,4 +25,24 @@ function App() {
   );
 }
 
+const taskList = [
+  "Finish homework",
+  "Study React",
+  "Walk the dog",
+  "Clean the room",
+  "Push project to GitHub"
+];
+
+<ul>
+  {taskList.map((task, index) => (
+    <li key={index}>{task}</li>
+  ))}
+</ul>
+
+function handleAlert() {
+  alert("Button clicked from UserInfo component!");
+}
+
+<UserInfo handleClick={handleAlert} />
+
 export default App;
