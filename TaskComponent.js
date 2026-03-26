@@ -1,8 +1,48 @@
 // TaskComponent.js
-import React from "react";
+import React, { useState } from "react";
 
-function TaskComponent({ task }) {
-  return <h3>Random Task: {task}</h3>;
+function TaskComponent({ tasks, onDelete }) {
+  const [search, setSearch] = useState("");
+  const [sorted, setSorted] = useState(false);
+
+  const filteredTasks = tasks
+    .filter((task) =>
+      task.name.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (!sorted) return 0;
+      return a.name.localeCompare(b.name);
+    });
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search Tasks"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <button onClick={() => setSorted(true)}>Sort by Name</button>
+
+      <ul>
+        {filteredTasks.map((task) => (
+          <li key={task.id}>
+            {task.name} — {task.description}
+            <button
+              onClick={() => {
+                if (window.confirm("Are you sure you want to delete this task?")) {
+                  onDelete(task.id);
+                }
+              }}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default TaskComponent;
