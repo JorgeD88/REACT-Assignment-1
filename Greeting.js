@@ -1,14 +1,20 @@
 // Greeting.js
 // Greeting.js
-import React from "react";
+import React, { useState } from "react";
 
 function Greeting({ username }) {
+  const [greeting, setGreeting] = useState(`Hello, ${username}!`);
   const today = new Date().toLocaleDateString();
+
+  function changeGreeting() {
+    setGreeting(`Nice to see you, ${username}!`);
+  }
 
   return (
     <div>
-      <h1>Hello, {username}!</h1>
-      <p style={{ color: "purple" }}>Today's date is: {today}</p>
+      <h1>{greeting}</h1>
+      <p>Today's date: {today}</p>
+      <button onClick={changeGreeting}>Change Greeting</button>
     </div>
   );
 }
