@@ -1,48 +1,36 @@
 // App.js
-import React from "react";
+import React, { useState } from "react";
 import Greeting from "./Greeting";
 import UserInfo from "./UserInfo";
 import TaskComponent from "./TaskComponent";
+import TaskForm from "./TaskForm";
 
 function App() {
-  const tasks = [
-    "Finish React assignment",
-    "Review JavaScript notes",
-    "Push project to GitHub"
-  ];
+  const [tasks, setTasks] = useState([
+    { id: 1, name: "Buy groceries", description: "Milk, eggs, bread" },
+    { id: 2, name: "Study React", description: "Hooks, props, state" },
+    { id: 3, name: "Clean room", description: "Organize desk" }
+  ]);
 
-  function getRandomTask() {
-    const index = Math.floor(Math.random() * tasks.length);
-    return tasks[index];
+  function addTask(newTask) {
+    setTasks([...tasks, newTask]);
+  }
+
+  function deleteTask(id) {
+    setTasks(tasks.filter((task) => task.id !== id));
   }
 
   return (
     <div>
-      <Greeting />
+      <Greeting username="Alice" />
+
       <UserInfo />
-      <TaskComponent task={getRandomTask()} />
+
+      <TaskForm onAddTask={addTask} />
+
+      <TaskComponent tasks={tasks} onDelete={deleteTask} />
     </div>
   );
 }
-
-const taskList = [
-  "Finish homework",
-  "Study React",
-  "Walk the dog",
-  "Clean the room",
-  "Push project to GitHub"
-];
-
-<ul>
-  {taskList.map((task, index) => (
-    <li key={index}>{task}</li>
-  ))}
-</ul>
-
-function handleAlert() {
-  alert("Button clicked from UserInfo component!");
-}
-
-<UserInfo handleClick={handleAlert} />
 
 export default App;
