@@ -7,16 +7,26 @@ class UserInfo extends Component {
     super(props);
     this.state = {
       name: "John Doe",
-      profession: "Developer"
+      profession: "Developer",
+      luckyNumber: Math.floor(Math.random() * 100) + 1
     };
   }
+
+  generateNewLuckyNumber = () => {
+    this.setState({
+      luckyNumber: Math.floor(Math.random() * 100) + 1
+    });
+  };
 
   render() {
     return (
       <div>
         <p>Name: {this.state.name}</p>
         <p>Profession: {this.state.profession}</p>
-        <button onClick={this.props.handleClick}>Show Alert</button>
+        <p>Your lucky number is: {this.state.luckyNumber}</p>
+        <button onClick={this.generateNewLuckyNumber}>
+          Generate New Lucky Number
+        </button>
       </div>
     );
   }
