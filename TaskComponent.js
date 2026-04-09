@@ -1,4 +1,3 @@
-// TaskComponent.js
 import React, { useState } from "react";
 
 function TaskComponent({ tasks, onDelete }) {
@@ -7,11 +6,11 @@ function TaskComponent({ tasks, onDelete }) {
 
   const filteredTasks = tasks
     .filter((task) =>
-      task.name.toLowerCase().includes(search.toLowerCase())
+      task.taskName.toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => {
       if (!sorted) return 0;
-      return a.name.localeCompare(b.name);
+      return a.taskName.localeCompare(b.taskName);
     });
 
   return (
@@ -28,7 +27,7 @@ function TaskComponent({ tasks, onDelete }) {
       <ul>
         {filteredTasks.map((task) => (
           <li key={task.id}>
-            {task.name} — {task.description}
+            {task.taskName} — {task.taskDescription}
             <button
               onClick={() => {
                 if (window.confirm("Are you sure you want to delete this task?")) {
