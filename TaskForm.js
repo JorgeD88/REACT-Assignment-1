@@ -1,4 +1,3 @@
-// TaskForm.js
 import React, { useState } from "react";
 
 function TaskForm({ onAddTask }) {
@@ -14,7 +13,6 @@ function TaskForm({ onAddTask }) {
     }
 
     onAddTask({
-      id: Date.now(),
       name: taskName,
       description: description
     });
